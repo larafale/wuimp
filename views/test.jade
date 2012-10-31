@@ -1,0 +1,45 @@
+extends layout
+
+block content
+
+  .container(ng-controller="DefaultController")
+    hr
+    .row
+
+      .span4
+        form
+          p: input.span4(id="city", type="textbox", value="")
+
+      .span4
+        form
+          p: input(id="place", type="textbox", value="")
+
+  
+  script
+
+    var myApp = angular.module('myApp', [])
+
+    function DefaultController($scope, $http) {
+
+      var data = [
+        {id: "21", text: "Mick Jagger"},
+        {id: "43", text: "Johnny Storm"},
+        {id: "46", text: "Richard Hatch"},
+        {id: "54", text: "Kelly Slater"},
+        {id: "55", text: "Rudy Hamilton"},
+        {id: "79", text: "Michael Jordan"}
+      ]
+
+      ac = new completeMe({
+        input   : $('#city')
+      , startText : 'entrer'
+      , source  : function(defered){
+          setTimeout(function(){ defered.resolve(data) }, 2000)
+        }
+      //, source : data
+      , afterSelection : function(data){
+          $('#place').focus()
+        }
+      })
+
+    }

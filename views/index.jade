@@ -1,0 +1,50 @@
+extends layout
+
+block content
+
+  .container(ng-controller="DefaultController")
+
+    hr
+    .row
+
+      .span4
+        input(id="city", type="textbox", value="")
+
+      .span4
+        input(id="place", type="textbox", value="")
+
+    hr
+    .row
+      .span10
+        div(id="map_canvas", style="width:960px; height:250px;")
+
+      .span10
+        hr
+        div.pull-right
+          a#shareSource.hide(href='https://twitter.com/share=', data-lang='en', data-size="large", data-via='wuimp')
+          #share
+          
+        h2 {{place.name}}
+        ul.unstyled
+          li.list(ng-repeat="media in medias")
+            div.well(style="")
+
+              img.img-polaroid(ng-src="{{media.user.profile_picture}}", width="50", style="float:right; position:absolute")
+              p.label.label-warning.pull-right {{media.user.full_name}}
+              img.img-rounded(ng-src="{{media.images.standard_resolution.url}}")
+
+    hr
+
+  style.
+
+    .list {
+      margin-right: 10px;
+      width: 314px;
+      float: left;
+    }
+
+    .list:nth-child(3n){
+      margin:0;
+    }
+  
+  script

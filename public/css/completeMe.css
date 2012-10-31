@@ -1,0 +1,33 @@
+.cm_input.loading {
+  background: url(/img/loader.gif) no-repeat center right 10px;
+}
+
+.cm_ul {
+  box-shadow: 0 2px 12px #222222;
+  border-radius: 4px;
+  list-style: none;
+  margin: 0;
+  margin-top: 1px;
+  position: absolute;
+  z-index: 5000;
+}
+
+.cm_ul li {
+  background-color: #fff;
+  padding: 5px 12px;
+  border-bottom: 1px solid grey;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.cm_ul li.active {
+  background-color: #3668D9;
+  color: #fff;
+  font-weight: bold;
+}
+
+.cm_ul li:last-child {
+  border: 0;
+}
+
