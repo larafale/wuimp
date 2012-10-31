@@ -61,7 +61,7 @@ function DefaultController($scope, $http) {
 
   }
 
-  var cm1 = new completeMe({
+  var cm1 = new CompleterJS({
     input     : $('#city')
   , width     : 350
   , minChars  : 3
@@ -90,7 +90,7 @@ function DefaultController($scope, $http) {
     }
   })
 
-  var cm2 = new completeMe({
+  var cm2 = new CompleterJS({
     input     : $('#place')
   , width     : 350
   , minChars  : 3
