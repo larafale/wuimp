@@ -40,6 +40,7 @@ app.get('/js/*.js', function(req, res){ fs.readFile(__dirname + '/public' + req.
 app.get('/css/*.css', function(req, res){ fs.readFile(__dirname + '/public' + req.path, function(err, data) { res.end(data) }) })
 
 app.get('/', routes.index)
+app.get('/:id', routes.index)
 app.get('/test', routes.test)
 app.get('/foursquare', routes.foursquare)
 app.get('/foursquare_token', routes.foursquare_token)

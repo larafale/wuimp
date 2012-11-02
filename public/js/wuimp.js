@@ -4,10 +4,8 @@ function DefaultController($scope, $http) {
 
   $scope.place = {}
 
-  if(window.location.hash && window.location.hash.substr(1)){
-    $scope.hash = window.location.hash.substr(1)
-    process($scope.hash)
-  }
+  $scope.hash = getId()
+  if($scope.hash) process($scope.hash)
 
   $(window).scroll(function(){
     if($(window).scrollTop() == $(document).height() - $(window).height()){
@@ -30,8 +28,8 @@ function DefaultController($scope, $http) {
       var btn = $('#shareSource').clone()
 
       btn.show()
-      btn.attr("data-url", "http://wuimp.com/#" + $scope.hash)
-      btn.attr("data-text", "What's going on in " + $scope.place.name)
+      btn.attr("data-url", "http://wuimp.com/" + $scope.hash)
+      btn.attr("data-text", "Check what's going on in " + $scope.place.name)
       btn.attr("class", "twitter-share-button")
 
       $('#share').append(btn)

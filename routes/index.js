@@ -6,7 +6,7 @@ module.exports = function(app){
       , foursquare = app.locals.foursquare
 
   ctr.index = function(req, res){
-    res.render('index', { title: 'wuimp.com - what\'s up in my place' })
+    res.render('index', { title: 'wuimp.com - what\'s up in my place', id: req.params.id || '' })
   }
 
   ctr.test = function(req, res){
