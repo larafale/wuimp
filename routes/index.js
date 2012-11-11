@@ -6,11 +6,11 @@ module.exports = function(app){
       , foursquare = app.locals.foursquare
 
   ctr.index = function(req, res){
-    res.render('index', { title: 'wuimp.com - what\'s up in my place', id: req.params.id || '' })
+    res.render('index', { title: 'WUIMP - What\'s up in my place', id: req.params.id || '' })
   }
 
   ctr.test = function(req, res){
-    res.render('test', { title: 'wuimp.com - what\'s up in my place' })
+    res.render('test', { title: 'WUIMP - What\'s up in my place' })
   }
 
   ctr.foursquare = function(req, res){

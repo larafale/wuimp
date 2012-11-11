@@ -2,48 +2,83 @@ extends layout
 
 block content
 
-  .container(ng-controller="DefaultController")
+  .container-narrow(ng-controller="DefaultController")
 
-    hr
-    a(href="https://twitter.com/wuimp", class="twitter-follow-button", data-show-count="false", data-lang="en") Follow
-    script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    .row
+    #fb-root
+    script
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=551483001535204";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
 
-      .span4
+    .masthead
+
+      span.pull-right
+        p: a(href="https://twitter.com/wuimp", class="twitter-follow-button", data-show-count="false", data-lang="en") Follow
+        script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        p: .fb-like(data-href="http://www.wuimp.com", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
+
+      .logo
+        h1 Wuimp
+        span.label.label-important What's up in my place !
+
+    hr.dark
+
+    .inputs
+
+      .box
         input(id="city", type="textbox", value="")
-
-      .span4
+      h3 &
+      .box 
         input(id="place", type="textbox", value="")
 
-    hr
-    .row
-      .span10
-        div(id="map_canvas", style="width:960px; height:250px;")
+    div(ng-show="medias.length")
 
-      .span10
-        hr
-        a#shareSource.hide(href='https://twitter.com/share=', data-lang='en', data-size="large", data-hashtags='wuimp')
-        #share.pull-right
+      hr.dark
+
+      a#shareSource.hide(href='https://twitter.com/share=', data-lang='en', data-size="large", data-hashtags='wuimp')
+      #share.pull-right
+      img(src="{{place.icon}}", ng-show="place.icon", style="position:absolute;margin-top:5px;")
+      h3 {{place.name}}
+
+      hr.dark
+
+      div(id="map_canvas", style="height:250px;")
+
+      hr.dark
+      
+      .row-fluid.pics
+
+        .box(ng-repeat="media in medias")
+          .action
+            h3 {{media.user.full_name}}
+            img.img-polaroid(ng-src="{{media.user.profile_picture}}", width="150", style="")
+            p(ng-show="media.user.bio") {{media.user.bio}}
+            p: a.btn.btn-mini.btn-primary(ng-show="media.user.website", href="{{media.user.website}}", target="_blank") website
+            span {{media.caption.text}}
+          img.img-rounded(ng-src="{{media.images.standard_resolution.url}}")
+
+        hr.dark
+
+    //- .row
+    //-   .span10
+    //-     div(id="map_canvas", style="height:250px;")
+
+    //-   .span10
+    //-     hr
+        //- a#shareSource.hide(href='https://twitter.com/share=', data-lang='en', data-size="large", data-hashtags='wuimp')
+        //- #share.pull-right
           
-        h2 {{place.name}}
-        ul.unstyled
-          li.list(ng-repeat="media in medias")
-            div.well(style="")
+        //- h2 {{place.name}}
+    //-     ul.unstyled
+    //-       li.list(ng-repeat="media in medias")
+    //-         div.well(style="")
 
-              img.img-polaroid(ng-src="{{media.user.profile_picture}}", width="50", style="float:right; position:absolute")
-              p.label.label-warning.pull-right {{media.user.full_name}}
-              img.img-rounded(ng-src="{{media.images.standard_resolution.url}}")
+    //-           img.img-polaroid(ng-src="{{media.user.profile_picture}}", width="50", style="float:right; position:absolute")
+    //-           p.label.label-warning.pull-right {{media.user.full_name}}
+    //-           img.img-rounded(ng-src="{{media.images.standard_resolution.url}}")
 
-    hr
 
-  style.
-
-    .list {
-      margin-right: 10px;
-      width: 314px;
-      float: left;
-    }
-
-    .list:nth-child(3n){
-      margin:0;
-    }
