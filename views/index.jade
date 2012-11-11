@@ -20,6 +20,7 @@ block content
         p: a(href="https://twitter.com/wuimp", class="twitter-follow-button", data-show-count="false", data-lang="en") Follow
         script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
         p: .fb-like(data-href="http://www.wuimp.com", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
+        a(href="mailto:as1cron@gmail.com", style="font-size:10px;color:#999;") as1cron@gmail.com
 
       .logo
         h1: a(href="http://www.wuimp.com") Wuimp
@@ -43,6 +44,8 @@ block content
       #share.pull-right
       img(src="{{place.icon}}", ng-show="place.icon", style="margin-top: -8px;margin-right:10px;")
       h3(style="display:inline") {{place.name}}
+      br 
+      code http://www.wuimp.com/{{hash}}
 
       hr.dark
 
