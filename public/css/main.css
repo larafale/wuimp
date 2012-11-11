@@ -3428,9 +3428,13 @@ body .container-narrow .logo img {
   float: left;
 }
 body .container-narrow .logo h1 {
-  margin: 0;
+  margin-bottom: 10px;
   font-size: 35px;
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+body .container-narrow .logo h1 a {
+  color: black;
+  text-decoration: none;
 }
 body .container-narrow .logo h1:hover {
   cursor: pointer;
