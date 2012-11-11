@@ -7,11 +7,11 @@ function DefaultController($scope, $http) {
   $scope.hash = getId();
   if($scope.hash) process($scope.hash);
 
-  $(window).scroll(function(){
+  /*$(window).scroll(function(){
     if($(window).scrollTop() == $(document).height() - $(window).height()){
-      $scope.paginate();
+      scope.paginate();
     }
-  });
+  });*/
 
   function process(foursquareId){
 
@@ -28,8 +28,8 @@ function DefaultController($scope, $http) {
       var btn = $('#shareSource').clone();
 
       btn.show();
-      btn.attr("data-url", "http://wuimp.com/" + $scope.hash);
-      btn.attr("data-text", "Check what's going on in " + $scope.place.name);
+      btn.attr("data-url", "http://www.wuimp.com/" + $scope.hash);
+      btn.attr("data-text", "Check what's going on in \"" + $scope.place.name + "\" " + ($scope.place.city || ''));
       btn.attr("class", "twitter-share-button");
 
       $('#share').append(btn);
@@ -80,6 +80,7 @@ function DefaultController($scope, $http) {
 
     }
   , afterSelection : function(data){
+      $scope.place.city = cm1.text;
       cm2.value = null;
       $('#place').val('');
       $('#place').focus();
