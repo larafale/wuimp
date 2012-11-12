@@ -14,21 +14,29 @@ block content
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
 
-    .masthead
+    .top(style="position:relative")
 
-      span.pull-right
+      div.social
         p: a(href="https://twitter.com/wuimp", class="twitter-follow-button", data-show-count="false", data-lang="en") Follow
         script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-        p: .fb-like(data-href="http://www.wuimp.com", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
-        a(href="mailto:as1cron@gmail.com", style="font-size:10px;color:#999;") as1cron@gmail.com
-
+        p: .fb-like.pull-right(data-href="http://www.wuimp.com", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
+        //a(href="mailto:as1cron@gmail.com", style="font-size:10px;color:#999;") as1cron@gmail.com
       .logo
         h1: a(href="http://www.wuimp.com") Wuimp
         span.label.label-important What's up in my place !
 
+
+
+    hr.dark
+
+    p.what.lead Wuimp let you check what's going on in your favorite spot, showing you instagram pics of it !
+
     hr.dark
 
     .inputs
+
+      p: small Type minimum 3 characters and choose from what's proposed to you.
+      br
 
       .box
         input(id="city", type="textbox", value="")
@@ -66,24 +74,9 @@ block content
 
         hr.dark
 
-        a.btn.btn-large.btn-primary.pull-right(ng-show="next", ng-click="paginate()") Next
-
-    //- .row
-    //-   .span10
-    //-     div(id="map_canvas", style="height:250px;")
-
-    //-   .span10
-    //-     hr
-        //- a#shareSource.hide(href='https://twitter.com/share=', data-lang='en', data-size="large", data-hashtags='wuimp')
-        //- #share.pull-right
-          
-        //- h2 {{place.name}}
-    //-     ul.unstyled
-    //-       li.list(ng-repeat="media in medias")
-    //-         div.well(style="")
-
-    //-           img.img-polaroid(ng-src="{{media.user.profile_picture}}", width="50", style="float:right; position:absolute")
-    //-           p.label.label-warning.pull-right {{media.user.full_name}}
-    //-           img.img-rounded(ng-src="{{media.images.standard_resolution.url}}")
+        a.btn.btn-large.btn-primary(href="#up")
+          i.icon-arrow-up.icon-white
+          |  Top
+        a.btn.btn-large.btn-primary.pull-right(ng-show="next", ng-click="paginate()") More
 
 

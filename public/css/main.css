@@ -3415,6 +3415,10 @@ body {
   padding-bottom: 40px;
   background: url(/img/bg.png);
 }
+body h2,
+body h3 {
+  color: #353434;
+}
 body .container-narrow {
   margin: 0 auto;
   max-width: 570px;
@@ -3423,20 +3427,30 @@ body .container-narrow {
 body .container-narrow hr.dark {
   border-bottom: 1px dashed #999;
 }
-body .container-narrow .logo img {
+body .container-narrow .top {
+  position: relative;
+}
+body .container-narrow .top .social {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 106px;
+}
+body .container-narrow .top .logo img {
   margin-right: 10px;
   float: left;
 }
-body .container-narrow .logo h1 {
+body .container-narrow .top .logo h1 {
   margin-bottom: 10px;
   font-size: 35px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
-body .container-narrow .logo h1 a {
+body .container-narrow .top .logo h1 a {
   color: black;
   text-decoration: none;
 }
-body .container-narrow .logo h1:hover {
+body .container-narrow .top .logo h1:hover {
   cursor: pointer;
   -webkit-animation-duration: 1s;
   -moz-animation-duration: 1s;
@@ -3450,6 +3464,11 @@ body .container-narrow .logo h1:hover {
   -moz-animation-name: tada;
   -o-animation-name: tada;
   animation-name: tada;
+}
+body .container-narrow .what {
+  font-size: 22px;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 body .container-narrow h3 {
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
