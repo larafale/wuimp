@@ -44,6 +44,7 @@ app.get('/:id', routes.index)
 app.get('/test', routes.test)
 app.get('/foursquare', routes.foursquare)
 app.get('/foursquare_token', routes.foursquare_token)
+//app.get('*', function(req, res){ res.render('404') })
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'))

@@ -45,6 +45,11 @@ block content
       .box 
         input(id="place", type="textbox", value="")
 
+    div(ng-show="!medias.length && searched")
+
+      hr.dark
+      h3(style="text-align:center") No pictures found sorry !"
+
     div(ng-show="medias.length")
 
       hr.dark
@@ -63,7 +68,6 @@ block content
       hr.dark
       
       .row-fluid.pics
-        p {{medias.length}}
         .box(ng-repeat="media in medias")
           .action
             h3 {{media.user.full_name}}
