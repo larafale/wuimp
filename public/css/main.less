@@ -1,7 +1,18 @@
 @import "animate.less";
 
+@font-face {
+    font-family: 'UbuntuRegular';
+    src: url('/img/Ubuntu-R-webfont.eot');
+    src: url('/img/Ubuntu-R-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/img/Ubuntu-R-webfont.woff') format('woff'),
+         url('/img/Ubuntu-R-webfont.ttf') format('truetype'),
+         url('/img/Ubuntu-R-webfont.svg#UbuntuRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'UbuntuRegular';
 }
 
 body {
@@ -39,11 +50,9 @@ body {
         }
 
         h1 {
-          margin-bottom:10px;
           font-size:35px;
-          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-          text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
-          a { color: black; text-decoration: none; }
+          text-shadow: 1px 2px 0 #FCF9EE, 3px 4px 0px rgba(0, 0, 0, 0.3);
+          a { color: #8F2E28; text-decoration: none; }
 
           &:hover {
             cursor:pointer;
