@@ -35,7 +35,7 @@ block content
 
     .inputs
 
-      p: small Type minimum 3 characters and choose from what's proposed to you.
+      p Start typing and <strong>choose</strong> from what's proposed to you.
       br
 
       .box
@@ -62,7 +62,7 @@ block content
       hr.dark
       
       .row-fluid.pics
-
+        p {{medias.length}}
         .box(ng-repeat="media in medias")
           .action
             h3 {{media.user.full_name}}
