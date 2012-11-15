@@ -25,7 +25,7 @@ function DefaultController($scope, $http) {
         $scope.$digest();
         return;
       };
-      
+
       $scope.place.name = data.data[0].name;
       $scope.place.lat = data.data[0].latitude;
       $scope.place.lng = data.data[0].longitude;
@@ -127,6 +127,7 @@ function DefaultController($scope, $http) {
       $scope.place.idFoursquare = data.id;
       $scope.hash = data.id;
       process(data.id);
+      $('#place').blur();
     }
   , formatList : function(data, elem){
       var icon = data.icon ? '<img src="'+data.icon+'" />&nbsp;' : '';
