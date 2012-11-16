@@ -60,6 +60,7 @@ block content
 
       a#shareSource.hide(href='https://twitter.com/share=', data-lang='en', data-size="large", data-hashtags='wuimp')
       #share.pull-right
+      p: .fb-like.pull-right(data-href="http://www.wuimp.com/{{hash}}", data-send="false", data-layout="button_count", data-width="450", data-show-faces="false")
       img(src="{{place.icon}}", ng-show="place.icon", style="margin-top: -8px;margin-right:10px;")
       h3(style="display:inline") {{place.name}}
       br 
