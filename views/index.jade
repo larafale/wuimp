@@ -36,14 +36,23 @@ block content
 
     .inputs
 
-      p: small Type minimum 3 characters and choose from what's proposed to you.
+      p Start typing and <strong>choose</strong> from what's proposed to you.
       br
 
       .box
         input(id="city", type="textbox", value="")
+        script
+          $('#city').tooltip({'trigger':'focus', 'title': "3 characters minimum"});
       h3 &
       .box 
         input(id="place", type="textbox", value="")
+        script
+          $('#place').tooltip({'trigger':'focus', 'title': "Bars, restaurants, monuments, nightclubs, anything..."});
+
+    div(ng-show="!medias.length && searched")
+
+      hr.dark
+      h3(style="text-align:center") No pictures found sorry :)
 
     div(ng-show="medias.length")
 
@@ -54,16 +63,17 @@ block content
       img(src="{{place.icon}}", ng-show="place.icon", style="margin-top: -8px;margin-right:10px;")
       h3(style="display:inline") {{place.name}}
       br 
-      code http://www.wuimp.com/{{hash}}
+      a.btn.btn-primary(title="This is '{{place.name}}' Direct Link", href="http://www.wuimp.com/{{hash}}", style="text-align:center;display:block;margin-top:10px") 
+        i.icon-star.icon-white
+        |  www.wuimp.com/{{hash}}
 
       hr.dark
 
-      div(id="map_canvas", style="height:250px;")
+      div(id="map_canvas", style="height:160px;")
 
       hr.dark
       
       .row-fluid.pics
-
         .box(ng-repeat="media in medias")
           .action
             h3 {{media.user.full_name}}

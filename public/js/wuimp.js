@@ -18,7 +18,14 @@ function DefaultController($scope, $http) {
     var url = 'https://api.instagram.com/v1/locations/search?callback=?&amp;&foursquare_v2_id='+foursquareId+'&client_id=b9b016b2ab564ff18b3dc22460fc4753';
     $.getJSON(url, function(data){
 
-      if(!data.data[0]) return;
+      $scope.searched = true;
+
+      if(!data.data[0]){
+        $scope.medias = [];
+        $scope.$digest();
+        return;
+      };
+
       $scope.place.name = data.data[0].name;
       $scope.place.lat = data.data[0].latitude;
       $scope.place.lng = data.data[0].longitude;
@@ -120,6 +127,7 @@ function DefaultController($scope, $http) {
       $scope.place.idFoursquare = data.id;
       $scope.hash = data.id;
       process(data.id);
+      $('#place').blur();
     }
   , formatList : function(data, elem){
       var icon = data.icon ? '<img src="'+data.icon+'" />&nbsp;' : '';

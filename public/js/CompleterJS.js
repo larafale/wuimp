@@ -70,8 +70,8 @@ var CompleterJS = function(options){
   input.focus(function(){
     if(typeof o.onFocus == 'function') o.onFocus.call(this)
     if(input.val().length == 0) return
-    if(input.val().length == self.last.length) list.show()
-    else if(!(input.val().length < o.minChars)) change()
+    //if(input.val().length == self.last.length) list.show()
+    //else if(!(input.val().length < o.minChars)) change()
   })
 
   //handle key press
