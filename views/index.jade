@@ -30,7 +30,7 @@ block content
 
     hr.dark
 
-    p.what.lead Wuimp lets you check what's going on at your favorite spot, showing you instagram pics of it !
+    p.what.lead Look at pictures taken at your favorite spot, or anywhere in the world !
 
     hr.dark
 
@@ -49,6 +49,17 @@ block content
         script
           $('#place').tooltip({'trigger':'focus', 'title': "Bars, restaurants, monuments, nightclubs, anything..."});
 
+    div(ng-show="places.length")
+
+      hr.dark
+      h3(style="text-align:center") Live Search
+
+      ul(class="nav nav-tabs nav-stacked")
+        li(ng-repeat="place in places | limitTo:10", style="text-align:center") 
+          a(ng-click="search(place.idFoursquare)")
+            img(src="{{place.icon}}")
+            | &nbsp;&nbsp;&nbsp;&nbsp; {{place.name}} - {{place.city}}
+
     div(ng-show="!medias.length && searched")
 
       hr.dark
@@ -63,7 +74,7 @@ block content
       img(src="{{place.icon}}", ng-show="place.icon", style="margin-top: -8px;margin-right:10px;")
       h3(style="display:inline") {{place.name}}
       br 
-      a.btn.btn-primary(title="This is '{{place.name}}' Direct Link", href="http://www.wuimp.com/{{hash}}", style="text-align:center;display:block;margin-top:10px") 
+      span.btn.btn-primary(title="This is '{{place.name}}' Direct Link", style="text-align:center;display:block;margin-top:10px") 
         i.icon-star.icon-white
         |  www.wuimp.com/{{hash}}
 

@@ -1,0 +1,97 @@
+# ----------------------------------------
+# Toutes les données du site Web
+# Pages
+# 20121017-20121116
+# ----------------------------------------
+
+Page,Pageviews,Unique Pageviews,Avg. Time on Page,Entrances,Bounce Rate,% Exit,Page Value
+/,312,109,00:02:22,105,58.10%,27.56%,$0.00
+/4bad3addf964a520d33b3be3,118,14,00:01:17,7,14.29%,5.08%,$0.00
+/4f629665e4b086a33578d1c6,12,6,00:00:44,2,100.00%,33.33%,$0.00
+/4ece18ec29c223f9263956b7,11,3,00:02:22,0,0.00%,9.09%,$0.00
+/4f629665e4b086a33578d1c6?place=UWI Roy Marshall Teaching Complex&city=undefined,6,2,00:05:22,0,0.00%,16.67%,$0.00
+/4bd5c62e6798ef3bd7ec638d,4,2,00:00:18,0,0.00%,50.00%,$0.00
+"/?fb_action_ids=10151236843629861&fb_action_types=og.likes&fb_source=other_multiline&action_object_map={""10151236843629861"":352072238221922}&action_type_map={""10151236843629861"":""og.likes""}&action_ref_map=[]",3,2,00:01:04,2,50.00%,66.67%,$0.00
+/4b56f47cf964a520892028e3,3,2,00:01:24,0,0.00%,33.33%,$0.00
+/4eea352b77c85fa6b8a163c5,3,2,00:01:56,1,0.00%,33.33%,$0.00
+/40e0b100f964a520a2021fe3,2,2,00:00:00,1,100.00%,100.00%,$0.00
+/4b5481fcf964a520d4bd27e3,2,2,00:02:07,1,0.00%,0.00%,$0.00
+/4b5481fcf964a520d4bd27e3?place=IPC - Institut Paoli-Calmettes&city=undefined,2,2,00:00:20,0,0.00%,50.00%,$0.00
+/4ba56182f964a520490139e3?place=Lc Club&city=Nantes,2,1,00:00:27,0,0.00%,0.00%,$0.00
+/4d3d639b557d6dcb8bcf4344,2,2,00:01:16,0,0.00%,0.00%,$0.00
+/507be90de4b08ac08f5062fa?place=Confluence&city=Lyon,2,1,00:01:09,0,0.00%,0.00%,$0.00
+"/?fb_action_ids=113859288775903&fb_action_types=og.likes&fb_source=other_multiline&action_object_map={""113859288775903"":352072238221922}&action_type_map={""113859288775903"":""og.likes""}&action_ref_map=[]",1,1,00:04:28,0,0.00%,0.00%,$0.00
+/40b13b00f964a520d1f51ee3?place=Paragon Restaurant&city=Portland,1,1,00:00:46,0,0.00%,0.00%,$0.00
+/447bf8f1f964a520ec331fe3,1,1,00:00:00,1,100.00%,100.00%,$0.00
+/49b7ed6df964a52030531fe3?place=Times Square&city=New York,1,1,00:01:15,0,0.00%,0.00%,$0.00
+/4adcda09f964a520dd3321e3?place=Tour Eiffel&city=Paris,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4adcda0cf964a520023521e3?place=Place de la Nation&city=Paris,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4adcdab1f964a520025021e3?place=Le Jet d'Eau / Water Fountain&city=Geneve,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4b5481fcf964a520d4bd27e3?place=IPC - Institut Paoli-Calmettes&city=Marseille,1,1,00:02:01,1,0.00%,0.00%,$0.00
+/4b5637c9f964a520dc0528e3?place=Place du Capitole&city=Toulouse,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4b5e0a3df964a520817a29e3?place=Place Bellecour&city=Lyon,1,1,00:03:03,0,0.00%,0.00%,$0.00
+/4b63122ff964a520ec602ae3?place=Lycée Carnot&city=Dijon,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4ba56182f964a520490139e3,1,1,00:00:01,0,0.00%,0.00%,$0.00
+/4ba56182f964a520490139e3?place=Lc Club&city=undefined,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4bad3addf964a520d33b3be3?place=Le Brigand&city=Aix-en-Provence,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4bad3addf964a520d33b3be3?place=Le Brigand&city=undefined,1,1,00:00:07,0,0.00%,0.00%,$0.00
+/4bae74d2f964a520aeb43be3?place=Bowling des Rottes Conthey&city=Sion,1,1,00:00:39,0,0.00%,0.00%,$0.00
+/4baf1752f964a520c7ea3be3,1,1,00:00:01,1,0.00%,0.00%,$0.00
+/4baf1752f964a520c7ea3be3?place=Starbucks&city=Lyon,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4baf1752f964a520c7ea3be3?place=Starbucks&city=undefined,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4baf4ed1f964a520e5f63be3?place=La colline du Château&city=Nice,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4bddc974e75c0f479b9bc503?place=Analog Bar&city=San Diego,1,1,00:00:36,0,0.00%,0.00%,$0.00
+/4bead6b5a9900f4709fd1640?place=Place Garibaldi&city=Nice,1,1,00:00:55,0,0.00%,0.00%,$0.00
+/4c28a7f7fe6e2d7f3589533c?place=Gare SNCF de Bourgoin-Jallieu&city=Bourgoin-Jallieu,1,1,00:00:43,0,0.00%,0.00%,$0.00
+/4c404e2ccc410f47555ea961?place=Place Rossetti&city=Nice,1,1,00:00:48,0,0.00%,0.00%,$0.00
+/4cda551a5aeda1cda551b611?place=Mairie&city=Fontenay-sous-Bois,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4ce1202d7e2e236a65928e1b?place=Vieux Valais&city=Sion,1,1,00:01:05,0,0.00%,0.00%,$0.00
+/4d44a68d3616b60cc8b4e6c2?place=Titan Xyphos Complex&city=Lyon,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4da2f80cb521224b7a9513ee?place=Nation Photo&city=Paris,1,1,00:00:19,0,0.00%,0.00%,$0.00
+/4dcdd77dd4c065592f709212?place=Usine Kugler&city=Geneve,1,1,00:00:27,0,0.00%,0.00%,$0.00
+/4e6017dbb61cd78087885c60?place=Shooters&city=Dijon,1,1,00:00:37,0,0.00%,0.00%,$0.00
+/4e624fa4fa76cd64ce2c3bc2?place=La Patinoire Aubagne&city=Aubagne,1,1,00:01:57,0,0.00%,0.00%,$0.00
+/4eac5b7d8b8180c90c3b4ee9?place=Le Bar&city=Paris,1,1,00:02:55,0,0.00%,0.00%,$0.00
+/4ecec6860e01f1a87deebeb7?place=Rue De L'Arquebuse&city=Dijon,1,1,00:02:33,0,0.00%,0.00%,$0.00
+/4ee33bd27ee5334d940a947a?place=Macdo&city=Fontenay-sous-Bois,1,1,00:00:12,0,0.00%,0.00%,$0.00
+/4f32e72ae4b0ccc70dee30a4?place=Rotonde Aix-En-Provence&city=Aix-en-Provence,1,1,00:04:44,0,0.00%,0.00%,$0.00
+/4f435494e4b08c6c28ce5f3c,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4f85b54de4b047432f72c5c8?place=Coop&city=Sion,1,1,00:00:00,0,0.00%,100.00%,$0.00
+/4fbddfc0e4b05cd27a1b92d9?place=Bourgoin-Jallieu&city=Bourgoin-Jallieu,1,1,00:04:13,0,0.00%,0.00%,$0.00
+/aa,1,1,00:19:08,0,0.00%,0.00%,$0.00
+,523,191,00:02:01,122,54.92%,23.33%,$0.00
+
+Day,Pageviews
+10/17/12,0
+10/18/12,0
+10/19/12,0
+10/20/12,0
+10/21/12,0
+10/22/12,0
+10/23/12,0
+10/24/12,0
+10/25/12,0
+10/26/12,0
+10/27/12,0
+10/28/12,0
+10/29/12,0
+10/30/12,0
+10/31/12,0
+11/1/12,0
+11/2/12,0
+11/3/12,0
+11/4/12,0
+11/5/12,0
+11/6/12,0
+11/7/12,0
+11/8/12,0
+11/9/12,0
+11/10/12,0
+11/11/12,38
+11/12/12,84
+11/13/12,97
+11/14/12,12
+11/15/12,47
+11/16/12,245
+,523
+

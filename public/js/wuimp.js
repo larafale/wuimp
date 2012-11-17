@@ -10,13 +10,25 @@ var _gaq = _gaq || [];
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
+var socket = io.connect(window.location.hostname);
+
+
+
 function DefaultController($scope, $http) {
 
   $scope.place = {};
   $scope.places = [];
 
+  socket.on('status', function (data) {
+    console.log(data.status);
+  });
+
+  socket.on('place', function (data) {
+    $scope.places.unshift(data)
+  });
+
   $scope.hash = getId();
-  if($scope.hash) process($scope.hash);
+  if($scope.hash) process($scope.hash, true);
 
   /*$(window).scroll(function(){
     if($(window).scrollTop() == $(document).height() - $(window).height()){
@@ -24,7 +36,12 @@ function DefaultController($scope, $http) {
     }
   });*/
 
-  function process(foursquareId){
+  $scope.search = function(foursquareId){
+    process(foursquareId, true);
+    return false;
+  };
+
+  function process(foursquareId, direct){
 
     var url = 'https://api.instagram.com/v1/locations/search?callback=?&amp;&foursquare_v2_id='+foursquareId+'&client_id=b9b016b2ab564ff18b3dc22460fc4753';
     $.getJSON(url, function(data){
@@ -42,7 +59,8 @@ function DefaultController($scope, $http) {
       $scope.place.lng = data.data[0].longitude;
       $scope.place.idInstagram = data.data[0].id;
 
-      $scope.places.push($scope.place)
+      
+      if(!direct) socket.emit('search', $scope.place);
       
       _gaq.push(['_trackPageview', '/' + foursquareId + '?place=' + $scope.place.name + '&city=' + $scope.place.city]);
 
