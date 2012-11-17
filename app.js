@@ -53,15 +53,13 @@ io.configure(function () {
   io.set("polling duration", 10);
 });
 
+io.sockets.on('connection', function (socket) {
+  io.sockets.emit('status', { status: "connected" });
+  socket.on('search', function (data) {
+    socket.broadcast.emit('place', data);
+  });
+});
 
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'))
 })
-
-io.sockets.on('connection', function (socket) {
-  io.sockets.emit('status', { status: "connected" });
-  socket.on('search', function (data) {
-    console.log(data)
-    io.sockets.emit('place', data);
-  });
-});

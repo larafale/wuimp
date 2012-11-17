@@ -12,8 +12,6 @@ var _gaq = _gaq || [];
 
 var socket = io.connect(window.location.hostname);
 
-
-
 function DefaultController($scope, $http) {
 
   $scope.place = {};
