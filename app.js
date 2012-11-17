@@ -48,10 +48,10 @@ app.get('/foursquare', routes.foursquare)
 app.get('/foursquare_token', routes.foursquare_token)
 //app.get('*', function(req, res){ res.render('404') })
 
-// io.configure(function () {
-//   io.set("transports", ["xhr-polling"]);
-//   io.set("polling duration", 10);
-// });
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
 
 io.sockets.on('connection', function (socket) {
   io.sockets.emit('status', { status: "connected" });
