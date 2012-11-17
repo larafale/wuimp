@@ -60,8 +60,9 @@ server.listen(app.get('port'), function(){
 
 io.sockets.on('connection', function (socket) {
   io.sockets.emit('status', { status: "connected" });
-  socket.on('search', function (data) {
-    console.log(data)
-    io.sockets.emit('place', data);
-  });
+});
+
+io.socket.on('search', function (data) {
+  console.log(data)
+  io.sockets.emit('place', data);
 });
