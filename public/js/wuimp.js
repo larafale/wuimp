@@ -13,6 +13,7 @@ var _gaq = _gaq || [];
 function DefaultController($scope, $http) {
 
   $scope.place = {};
+  $scope.places = [];
 
   $scope.hash = getId();
   if($scope.hash) process($scope.hash);
@@ -40,6 +41,8 @@ function DefaultController($scope, $http) {
       $scope.place.lat = data.data[0].latitude;
       $scope.place.lng = data.data[0].longitude;
       $scope.place.idInstagram = data.data[0].id;
+
+      $scope.places.push($scope.place)
       
       _gaq.push(['_trackPageview', '/' + foursquareId + '?place=' + $scope.place.name + '&city=' + $scope.place.city]);
 
