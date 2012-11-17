@@ -57,7 +57,7 @@ block content
       ul(class="nav nav-tabs nav-stacked")
         li(ng-repeat="place in places | limitTo:10", style="text-align:center") 
           a(ng-click="search(place.idFoursquare)")
-            img(src="{{place.icon}}")
+            img(ng-src="{{place.icon}}")
             | &nbsp;&nbsp;&nbsp;&nbsp; {{place.name}} - {{place.city}}
 
     div(ng-show="!medias.length && searched")
