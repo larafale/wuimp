@@ -56,7 +56,7 @@ io.configure(function () {
 io.sockets.on('connection', function (socket) {
   io.sockets.emit('status', { status: "connected" });
   socket.on('search', function (data) {
-    socket.broadcast.emit('place', data);
+    io.sockets.emit('place', data);
   });
 });
 
