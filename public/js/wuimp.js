@@ -24,7 +24,8 @@ function DefaultController($scope, $http) {
   });
 
   socket.on('place', function (data) {
-    $scope.places.unshift(data)
+    $scope.places.unshift(data);
+    $scope.$digest();
   });
 
   $scope.hash = getId();
