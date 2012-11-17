@@ -10,7 +10,7 @@ var _gaq = _gaq || [];
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-var socket = io.connect(window.location.hostname);
+var socket = io.connect();
 
 function DefaultController($scope, $http) {
 
