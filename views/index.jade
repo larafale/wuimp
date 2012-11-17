@@ -49,10 +49,6 @@ block content
         script
           $('#place').tooltip({'trigger':'focus', 'title': "Bars, restaurants, monuments, nightclubs, anything..."});
 
-    div
-      ul 
-        li(ng-repeat="place in places") {{place.city}}
-
     div(ng-show="!medias.length && searched")
 
       hr.dark
