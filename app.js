@@ -55,6 +55,7 @@ io.configure(function () {
 
 io.sockets.on('connection', function (socket) {
   io.sockets.emit('status', { status: "connected" });
+  io.sockets.emit('place', {"city":"Aix-en-Provence","icon":"https://foursquare.com/img/categories/food/french.png","idFoursquare":"4bc36b04920eb7133d6d1d2c","name":"La Mado"});
   socket.on('search', function (data) {
     io.sockets.emit('place', data);
   });

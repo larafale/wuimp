@@ -22,6 +22,7 @@ function DefaultController($scope, $http) {
   });
 
   socket.on('place', function (data) {
+    console.log('pulling');
     $scope.places.unshift(data);
     $scope.$digest();
   });
