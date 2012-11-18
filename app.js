@@ -1,8 +1,3 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express')
   , http    = require('http')
   , app     = module.exports.app      = express()
@@ -53,13 +48,14 @@ io.configure(function () {
   io.set("polling duration", 10);
 });
 
-io.sockets.on('connection', function (socket) {
-  io.sockets.emit('status', { status: "connected" });
-  socket.on('search', function (data) {
-    io.sockets.emit('place', data);
-  });
-});
-
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'))
 })
+
+io.sockets.on('connection', function (socket) {
+  io.sockets.emit('status', { status: "connected" });
+  socket.on('search', function (data) {
+    socket.broadcast.emit('place', data);
+  });
+});
+
