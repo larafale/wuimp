@@ -3429,7 +3429,6 @@ body h3 {
 body .container-narrow {
   margin: 0 auto;
   max-width: 570px;
-  padding: 10px;
 }
 body .container-narrow hr.dark {
   border-bottom: 1px dashed #999;
@@ -3485,12 +3484,31 @@ body .container-narrow .inputs {
 body .container-narrow .inputs .box {
   margin-bottom: 20px;
 }
-body .container-narrow .pics .box {
-  position: relative;
+body .container-narrow .photos {
+  overflow: auto;
+}
+body .container-narrow .photos .box {
+  display: block;
   margin-bottom: 20px;
+  position: relative;
   color: #fff;
 }
-body .container-narrow .pics .box:hover .action {
+@media (min-width: 591px) {
+  body .container-narrow .photos .box {
+    float: left;
+    max-width: 280px;
+  }
+  body .container-narrow .photos .box:nth-child(odd) {
+    margin-right: 10px;
+  }
+}
+@media (max-width: 590px) {
+  body .container-narrow .photos .box {
+    margin: 10px auto;
+    max-width: 306px;
+  }
+}
+body .container-narrow .photos .box:hover .action {
   display: block;
   -webkit-animation-duration: 1s;
   -moz-animation-duration: 1s;
@@ -3505,7 +3523,7 @@ body .container-narrow .pics .box:hover .action {
   -o-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
-body .container-narrow .pics .box .action {
+body .container-narrow .photos .box .action {
   position: absolute;
   text-align: center;
   display: none;
@@ -3513,21 +3531,16 @@ body .container-narrow .pics .box .action {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 }
-body .container-narrow .pics .box .action h3 {
-  color: #fff;
+body .container-narrow .photos .box .action p {
+  line-height: 14px;
+  font-size: 12px;
 }
-body .container-narrow .pics .box .action p {
-  margin: 20px;
-}
-body .container-narrow .pics .box .action a {
+body .container-narrow .photos .box .action a {
   width: 60px;
   margin: auto;
 }
-body .container-narrow .pics .box .action span {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 10px 15px;
+body .container-narrow .photos .box .action img {
+  margin-bottom: 10px;
 }
 #city,
 #place {

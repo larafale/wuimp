@@ -14,9 +14,10 @@ var _gaq = _gaq || [];
 function DefaultController($scope, $http) {
 
   var socket = io.connect();
-  
+
   $scope.place = {};
   $scope.places = [];
+  $scope.totalSearch = 0;
 
   socket.on('status', function (data) {
     console.log(data.status);
@@ -30,6 +31,11 @@ function DefaultController($scope, $http) {
 
   $scope.hash = getId();
   if($scope.hash) process($scope.hash, true);
+  else {
+    $scope.picOfDay = true;
+    $scope.hash = "4c99f68edb10b60c0a3e8e6d";//courou
+    process($scope.hash, true);
+  }
 
   /*$(window).scroll(function(){
     if($(window).scrollTop() == $(document).height() - $(window).height()){
@@ -62,8 +68,10 @@ function DefaultController($scope, $http) {
 
       
       if(!direct) socket.emit('search', $scope.place);
-      
       _gaq.push(['_trackPageview', '/' + foursquareId + '?place=' + $scope.place.name + '&city=' + $scope.place.city]);
+
+      if($scope.totalSearch) $scope.picOfDay = false;
+      $scope.totalSearch = $scope.totalSearch + 1;
 
       $('#share').empty();
       var btn = $('#shareSource').clone();
@@ -79,6 +87,7 @@ function DefaultController($scope, $http) {
       $.getJSON('https://api.instagram.com/v1/locations/'+$scope.place.idInstagram+'/media/recent?callback=?&amp;&client_id=b9b016b2ab564ff18b3dc22460fc4753', function(data){
         $scope.next = data.pagination && data.pagination.next_url ? data.pagination.next_url : null;
         $scope.medias = data.data;
+        console.log(data.data);
         $scope.$digest();
 
         if(!mapInit) initMaps();

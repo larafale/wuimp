@@ -26,7 +26,7 @@ body {
 
     margin: 0 auto;
     max-width: 570px;
-    padding: 10px;
+    //padding: 10px;
 
     hr.dark { 
       border-bottom: 1px dashed #999;
@@ -86,12 +86,29 @@ body {
 
     }
 
-    .pics {
+    .photos {
+
+      overflow: auto;
 
       .box {
-        position:relative;
+
+        display: block;
         margin-bottom:20px;
-        color:#fff;
+        position: relative;
+        color:#fff;        
+
+        @media (min-width: 591px) {
+          float: left;
+          max-width:280px;
+          &:nth-child(odd) {
+            margin-right: 10px;
+          }
+        }
+
+        @media (max-width: 590px) {
+          margin: 10px auto;
+          max-width: 306px;
+        }
 
         &:hover {
           .action {
@@ -109,12 +126,9 @@ body {
           height:100%;
           background-color: rgba(0,0,0,0.8);
 
-          h3 {
-            color: #fff;
-          }
-
           p {
-            margin: 20px;
+            line-height: 14px;
+            font-size: 12px;
           }
 
           a {
@@ -122,18 +136,17 @@ body {
             margin:auto;
           }
 
-          span {
-            position:absolute;
-            bottom:0;
-            left:0;
-            padding:10px 15px;
+          img {
+            margin-bottom: 10px;
           }
 
         }
 
+
       }
 
-    }    
+    }
+    
 
   }
 
