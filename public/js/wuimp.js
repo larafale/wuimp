@@ -33,7 +33,7 @@ function DefaultController($scope, $http) {
   if($scope.hash) process($scope.hash, true);
   else {
     $scope.picOfDay = true;
-    $scope.hash = "4f0db8a2e4b04a8cd7ef78ad";//machu pichu
+    $scope.hash = "4bd820e009ecb7134b15487c";//machu pichu
     process($scope.hash, true);
   }
 
