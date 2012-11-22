@@ -37,7 +37,6 @@ var CompleterJS = function(options){
   , formatList      : null
   , afterSelection  : null
   , onFocus         : null
-  , startText       : null
   , noResultsText   : 'No results'
   , timeoutText     : 'Timeout'
   , forceChoice     : true
@@ -59,7 +58,6 @@ var CompleterJS = function(options){
 
   input.addClass('cm_input')
   input.attr('autocomplete', 'off')
-  if(o.startText) input.attr('placeholder', o.startText)
   if(o.width) input.css('width', o.width + 'px')
   input.after('<ul class="cm_ul" id="cm_'+self.id+'"></ul>')
   list = $('#cm_'+self.id)

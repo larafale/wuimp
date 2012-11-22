@@ -40,12 +40,12 @@ block content
       br
 
       .box
-        input(id="city", type="textbox", value="")
+        input(id="city", type="textbox", value="", placeholder="Choose a City")
         script
           $('#city').tooltip({'trigger':'focus', 'title': "3 characters minimum"});
       h3 &
       .box 
-        input(id="place", type="textbox", value="")
+        input(id="place", type="textbox", value="", placeholder="Enter a Place")
         script
           $('#place').tooltip({'trigger':'focus', 'title': "Bars, restaurants, monuments, nightclubs, anything..."});
 

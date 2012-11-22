@@ -1,35 +1,40 @@
 var myApp = angular.module('myApp', []);
 
 var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36006605-1']);
-  _gaq.push(['_trackPageview']);
+_gaq.push(['_setAccount', 'UA-36006605-1']);
+_gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+Date.prototype.yyyymmdd = function() {
+  var yyyy = this.getFullYear().toString();
+  var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+  var dd  = this.getDate().toString();
+  return yyyy + (mm[1]?mm:"0"+mm[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+};
 
 
 function DefaultController($scope, $http) {
 
-  var socket = io.connect();
-
+  $scope.hash = getId();
   $scope.place = {};
   $scope.places = [];
   $scope.totalSearch = 0;
+  var yyymmdd = new Date().yyyymmdd();
 
-  socket.on('status', function (data) {
-    console.log(data.status);
-  });
-
+  /* handle sockets */
+  var socket = io.connect();
+  socket.on('status', function (data) { console.log(data.status); });
   socket.on('place', function (data) {
-    console.log('pulling');
     $scope.places.unshift(data);
     $scope.$digest();
   });
 
-  $scope.hash = getId();
+  /* init page */
   if($scope.hash) process($scope.hash, true);
   else {
     $scope.picOfDay = true;
@@ -37,11 +42,23 @@ function DefaultController($scope, $http) {
     process($scope.hash, true);
   }
 
-  /*$(window).scroll(function(){
-    if($(window).scrollTop() == $(document).height() - $(window).height()){
-      scope.paginate();
-    }
-  });*/
+  $scope.paginate = function (){
+
+    if(!$scope.next) return ;
+
+    var url = $scope.next;
+    var split = url.split('callback=');
+    url = split[0] + 'callback=?&amp;&';
+    split = split[1].split('client_id=');
+    url = url + 'client_id=' + split[1];
+
+    $.getJSON(url, function(data){
+      $scope.next = data.pagination && data.pagination.next_url ? data.pagination.next_url : null;
+      $scope.medias = _.compact(_.union($scope.medias, data.data));
+      $scope.$digest();
+    });
+
+  };
 
   $scope.search = function(foursquareId){
     process(foursquareId, true);
@@ -66,41 +83,38 @@ function DefaultController($scope, $http) {
       $scope.place.lng = data.data[0].longitude;
       $scope.place.idInstagram = data.data[0].id;
 
-      
       if(!direct) socket.emit('search', $scope.place);
       _gaq.push(['_trackPageview', '/' + foursquareId + '?place=' + $scope.place.name + '&city=' + $scope.place.city]);
 
       if($scope.totalSearch) $scope.picOfDay = false;
       $scope.totalSearch = $scope.totalSearch + 1;
 
-      $('#share').empty();
-      var btn = $('#shareSource').clone();
 
+      /* init tweet */
+      var btn = $('#shareSource').clone();
       btn.show();
       btn.attr("data-url", "http://www.wuimp.com/" + $scope.hash);
       btn.attr("data-text", "Check what's going on in \"" + $scope.place.name + "\" " + ($scope.place.city || ''));
       btn.attr("class", "twitter-share-button");
 
-      $('#share').append(btn);
+      $('#share').empty().append(btn);
       $.getScript("http://platform.twitter.com/widgets.js");
 
+      /* pull photos from instagram locationID */
       $.getJSON('https://api.instagram.com/v1/locations/'+$scope.place.idInstagram+'/media/recent?callback=?&amp;&client_id=b9b016b2ab564ff18b3dc22460fc4753', function(data){
+        
         $scope.next = data.pagination && data.pagination.next_url ? data.pagination.next_url : null;
         $scope.medias = data.data;
-        console.log(data.data);
         $scope.$digest();
 
+        /* set google map */
         if(!mapInit) initMaps();
-
         if($scope.place.lat && $scope.place.lng){
-        var latlng = new google.maps.LatLng($scope.place.lat, $scope.place.lng);
-        map.setCenter(latlng);
-        marker = new google.maps.Marker({
-            map: map,
-            position: latlng
-        });
-        $('#map_canvas').show();
-      };
+          var latlng = new google.maps.LatLng($scope.place.lat, $scope.place.lng);
+          map.setCenter(latlng);
+          marker = new google.maps.Marker({ map: map, position: latlng });
+          $('#map_canvas').show();
+        };
 
       });
 
@@ -108,11 +122,23 @@ function DefaultController($scope, $http) {
 
   };
 
+  function nearPlaces(ll){
+
+    var yyymmdd = new Date().yyyymmdd();
+
+    $.ajax({
+      url: 'https://api.foursquare.com/v2/venues/explore?client_id=QHODUDWGF01V3S2EWRIQ5HLNPXUUWLP2XMTUPJ3DYWUBZNKG&client_secret=2JGX233YXHA0JCXH1HWXGKS0TGTL54RUTAG5Q4ONPSODWFYJ&ll=' + ll + '&v=' + v.yyyymmdd(),
+      dataType: "json"
+    }).success(function(data){
+      console.log(data)
+    });
+
+  }
+
   var cm1 = new CompleterJS({
     input     : $('#city')
   , minChars  : 3
   , maxResults: 10
-  , startText : "Choose a City"
   , source    : function(query, defered){
 
       $.ajax({
@@ -141,14 +167,11 @@ function DefaultController($scope, $http) {
     input     : $('#place')
   , minChars  : 3
   , maxResults: 10
-  , startText : "Enter a Place"
   , onFocus   : function(){ if(!cm1.value){ $('#city').focus() } }
   , source    : function(query, defered){
-
-      var ll = cm1.value;
-
+    
       $.ajax({
-        url: 'https://api.foursquare.com/v2/venues/suggestcompletion?oauth_token=PK10U4AOCRU2VW3ZDNR41XPUDXS4R3VM3S2V404WSIHAUCX4&query=' + query + '&ll=' + ll,
+        url: 'https://api.foursquare.com/v2/venues/suggestcompletion?oauth_token=PK10U4AOCRU2VW3ZDNR41XPUDXS4R3VM3S2V404WSIHAUCX4&query=' + query + '&ll=' + cm1.value,
         dataType: "json"
       }).success(function(data){
         var source = _.compact(_.map(data.response.minivenues, function(o){
@@ -179,23 +202,6 @@ function DefaultController($scope, $http) {
     }
   });
 
-  $scope.paginate = function (){
-
-    if(!$scope.next) return ;
-
-    var url = $scope.next;
-    var split = url.split('callback=');
-    url = split[0] + 'callback=?&amp;&';
-    split = split[1].split('client_id=');
-    url = url + 'client_id=' + split[1];
-
-    $.getJSON(url, function(data){
-      $scope.next = data.pagination && data.pagination.next_url ? data.pagination.next_url : null;
-      $scope.medias = _.compact(_.union($scope.medias, data.data));
-      $scope.$digest();
-    });
-
-  };
 
   var geocoder
     , map
