@@ -192,7 +192,7 @@ function DefaultController($scope, $http) {
               , lat   : o.location && o.location.lat ? o.location.lat : false
               , lng   : o.location && o.location.lng ? o.location.lng : false
             }
-            console.log(obj)
+
           return distance && distance < 8000 ? obj : null;
         }));
         defered.resolve(source);
@@ -200,7 +200,7 @@ function DefaultController($scope, $http) {
 
     }
   , afterSelection : function(data){
-      $scope.place = data
+      $scope.place = _.extend(data, {city: $scope.place.city});
       $scope.hash = data.id;
       process(data.id);
       $('#place').blur();
