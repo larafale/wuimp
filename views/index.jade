@@ -56,7 +56,7 @@ block content
 
       ul(class="nav nav-tabs nav-stacked")
         li(ng-repeat="place in places | limitTo:10", style="text-align:center") 
-          a(ng-click="search(place.idFoursquare)")
+          a(ng-click="search(place.id)")
             img(ng-src="{{place.icon}}")
             | &nbsp;&nbsp;&nbsp;&nbsp; {{place.name}} - {{place.city}}
 
@@ -72,6 +72,18 @@ block content
           i.icon-star
           |   Place of the day   
           i.icon-star
+
+    div(ng-show="recommended.length")
+
+      hr.dark
+      h3(style="text-align:center") Popular
+
+      ul(class="nav nav-tabs nav-stacked")
+        li(ng-repeat="place in recommended | limitTo:30", style="text-align:center") 
+          a(ng-click="search(place.id)")
+            img(ng-src="{{place.icon}}")
+            | &nbsp;&nbsp;&nbsp;&nbsp; {{place.name}}
+
 
     div(ng-show="medias.length")
 
@@ -90,14 +102,16 @@ block content
       div(id="map_canvas", style="height:160px;")
 
       hr.dark
-      
+
       .photos
         .box(ng-repeat="media in medias")
           .action
+            a.profile(href="http://instagram.com/{{media.user.username}}", target="_blank"): img(src="//badges.instagram.com/static/images/ig-badge-24.png", title="View Profile")
             h5 {{media.user.full_name}}
             img.img-polaroid(ng-src="{{media.user.profile_picture}}", width="70", style="")
             p(ng-show="media.user.bio") {{media.user.bio}}
-            p(ng-show="media.user.website"): a.btn.btn-mini.btn-primary(href="{{media.user.website}}", target="_blank") website
+            p(ng-show="media.user.website"): a.btn.btn-mini.btn-primary.website(href="{{media.user.website}}", target="_blank") website
+
             p {{media.caption.text}}
           img.img-rounded(ng-src="{{media.images.low_resolution.url}}")
 

@@ -24,7 +24,9 @@ function DefaultController($scope, $http) {
   $scope.place = {};
   $scope.places = [];
   $scope.totalSearch = 0;
-  var yyymmdd = new Date().yyyymmdd();
+  var yyymmdd = new Date().yyyymmdd()
+    , fs = { token : "oauth_token=PK10U4AOCRU2VW3ZDNR41XPUDXS4R3VM3S2V404WSIHAUCX4", public:"client_id=QHODUDWGF01V3S2EWRIQ5HLNPXUUWLP2XMTUPJ3DYWUBZNKG", secret: "client_secret=2JGX233YXHA0JCXH1HWXGKS0TGTL54RUTAG5Q4ONPSODWFYJ" }
+    , is = { public : "client_id=b9b016b2ab564ff18b3dc22460fc4753" };
 
   /* handle sockets */
   var socket = io.connect();
@@ -38,7 +40,7 @@ function DefaultController($scope, $http) {
   if($scope.hash) process($scope.hash, true);
   else {
     $scope.picOfDay = true;
-    $scope.hash = "4bd820e009ecb7134b15487c";//machu pichu
+    $scope.hash = "4adcda09f964a520dd3321e3";//machu pichu
     process($scope.hash, true);
   }
 
@@ -67,7 +69,7 @@ function DefaultController($scope, $http) {
 
   function process(foursquareId, direct){
 
-    var url = 'https://api.instagram.com/v1/locations/search?callback=?&amp;&foursquare_v2_id='+foursquareId+'&client_id=b9b016b2ab564ff18b3dc22460fc4753';
+    var url = 'https://api.instagram.com/v1/locations/search?callback=?&amp;&foursquare_v2_id=' + foursquareId + '&' + is.public;
     $.getJSON(url, function(data){
 
       $scope.searched = true;
@@ -82,6 +84,23 @@ function DefaultController($scope, $http) {
       $scope.place.lat = data.data[0].latitude;
       $scope.place.lng = data.data[0].longitude;
       $scope.place.idInstagram = data.data[0].id;
+
+      // if(!direct){
+      //   $.ajax({
+      //     url: 'https://api.foursquare.com/v2/venues/explore?' + fs.public + '&' + fs.secret + '&ll=' + ($scope.place.lat + ',' + $scope.place.lng) + '&v=' + yyymmdd,
+      //     dataType: "json"
+      //   }).success(function(data){
+      //     $scope.recommended = []
+      //     if(data.numResults) {
+      //       _.each(data.response.groups[0].items, function(item, i){
+      //         if(item.venue.categories[0] && item.venue.categories[0].icon) item.venue.icon = item.venue.categories[0].icon.prefix+'bg_32'+item.venue.categories[0].icon.suffix
+      //         $scope.recommended[i] = item.venue 
+      //         console.log(item.venue)
+      //       });
+      //       $scope.$digest();
+      //     }
+      //   });
+      // }
 
       if(!direct) socket.emit('search', $scope.place);
       _gaq.push(['_trackPageview', '/' + foursquareId + '?place=' + $scope.place.name + '&city=' + $scope.place.city]);
@@ -101,7 +120,7 @@ function DefaultController($scope, $http) {
       $.getScript("http://platform.twitter.com/widgets.js");
 
       /* pull photos from instagram locationID */
-      $.getJSON('https://api.instagram.com/v1/locations/'+$scope.place.idInstagram+'/media/recent?callback=?&amp;&client_id=b9b016b2ab564ff18b3dc22460fc4753', function(data){
+      $.getJSON('https://api.instagram.com/v1/locations/'+$scope.place.idInstagram+'/media/recent?callback=?&amp;&' + is.public, function(data){
         
         $scope.next = data.pagination && data.pagination.next_url ? data.pagination.next_url : null;
         $scope.medias = data.data;
@@ -122,18 +141,7 @@ function DefaultController($scope, $http) {
 
   };
 
-  function nearPlaces(ll){
 
-    var yyymmdd = new Date().yyyymmdd();
-
-    $.ajax({
-      url: 'https://api.foursquare.com/v2/venues/explore?client_id=QHODUDWGF01V3S2EWRIQ5HLNPXUUWLP2XMTUPJ3DYWUBZNKG&client_secret=2JGX233YXHA0JCXH1HWXGKS0TGTL54RUTAG5Q4ONPSODWFYJ&ll=' + ll + '&v=' + v.yyyymmdd(),
-      dataType: "json"
-    }).success(function(data){
-      console.log(data)
-    });
-
-  }
 
   var cm1 = new CompleterJS({
     input     : $('#city')
@@ -171,26 +179,28 @@ function DefaultController($scope, $http) {
   , source    : function(query, defered){
     
       $.ajax({
-        url: 'https://api.foursquare.com/v2/venues/suggestcompletion?oauth_token=PK10U4AOCRU2VW3ZDNR41XPUDXS4R3VM3S2V404WSIHAUCX4&query=' + query + '&ll=' + cm1.value,
+        url: 'https://api.foursquare.com/v2/venues/suggestcompletion?' + fs.token + '&query=' + query + '&ll=' + cm1.value + '&v=' + yyymmdd,
         dataType: "json"
       }).success(function(data){
         var source = _.compact(_.map(data.response.minivenues, function(o){
-          var value     = o.id;
-          var name      = _.compact([o.name]).join(", "); /*Le brigand*/
-          var short     = o.name;
-          var icon      = o.categories[0] && o.categories[0].icon ? o.categories[0].icon : false;
-          var distance  = o.location && o.location.distance ? o.location.distance : false;
-          var lat       = o.location && o.location.lat ? o.location.lat : false;
-          var lng       = o.location && o.location.lng ? o.location.lng : false;
-          return distance && distance < 8000 ? { id: value, text: name, short: short, icon: icon, distance: distance, lat: lat, lng: lng } : null;
+          var distance  = o.location && o.location.distance ? o.location.distance : false
+            , obj = {
+                id    : o.id
+              , text  : _.compact([o.name]).join(", ")
+              , name  : _.compact([o.name]).join(", ")
+              , icon  : o.categories[0] && o.categories[0].icon ? o.categories[0].icon.prefix+"bg_32"+o.categories[0].icon.suffix : false
+              , lat   : o.location && o.location.lat ? o.location.lat : false
+              , lng   : o.location && o.location.lng ? o.location.lng : false
+            }
+            console.log(obj)
+          return distance && distance < 8000 ? obj : null;
         }));
         defered.resolve(source);
       });
 
     }
   , afterSelection : function(data){
-      $scope.place.icon = data.icon;
-      $scope.place.idFoursquare = data.id;
+      $scope.place = data
       $scope.hash = data.id;
       process(data.id);
       $('#place').blur();
